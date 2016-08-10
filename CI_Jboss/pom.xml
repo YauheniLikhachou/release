@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- -->
+   <properties>
+   	<timestamp>${maven.build.timestamp}</timestamp>
+   <!--	<maven.build.timestamp.format>||yyyy-MM-dd | HH:mm||</maven.build.timestamp.format> -->
+	<maven.build.timestamp.format>EEE, d MMM yyyy HH:mm:ss Z</maven.build.timestamp.format>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   </properties>
+
+   <modelVersion>4.0.0</modelVersion>
+  	<groupId>com.mtn.training</groupId>
+    	<artifactId>ci-training</artifactId>
+    	<packaging>jar</packaging>
+    	<version>1.0-SNAPSHOT</version>
+   <name>maven-simple</name>
+
+   <dependencies>
+   	<dependency>
+   		<groupId>org.apache.maven</groupId>
+   		<artifactId>maven-core</artifactId>
+   		<version>3.2.2</version>
+	</dependency>
+
+        <dependency>
+        	<groupId>org.apache.httpcomponents</groupId>
+        	<artifactId>httpclient</artifactId>
+        	<version>4.0.1</version>
+        </dependency>
+
+    	<dependency>
+    		<groupId>commons-lang</groupId>
+    		<artifactId>commons-lang</artifactId>
+    		<version>2.4</version>
+    	</dependency>
+
+	<dependency>
+    		<groupId>commons-collections</groupId>
+        	<artifactId>commons-collections</artifactId>
+            	<version>3.2.1</version>
+        </dependency>
+
+	<dependency>
+  		<groupId>junit</groupId>   
+  		<artifactId>junit-dep</artifactId>
+    		<version>4.8.2</version>
+    	</dependency>
+    
+        <dependency>
+      		<groupId>junit</groupId>
+      		<artifactId>junit</artifactId>
+      		<version>4.11</version>
+      		<scope>test</scope>
+    	</dependency>
+    
+    	<dependency>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>sonar-maven-plugin</artifactId>
+	 	<version>2.6</version>
+	</dependency>
+	<dependency>
+		<groupId>org.codehaus.sonar</groupId>
+		<artifactId>sonar-maven-plugin</artifactId>
+		<version>5.1</version>
+        </dependency>
+  </dependencies>
+
+  <build>
+        <defaultGoal>clean</defaultGoal>
+        <directory>${project.basedir}/target</directory>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <finalName>${project.version}-${maven.build.timestamp}</finalName>
+                    <descriptor>src/assem.xml</descriptor>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+   </build>
+
+</project>
